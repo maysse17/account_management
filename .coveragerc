@@ -1,0 +1,3 @@
+[run]
+include = account_management/*
+omit = *migrations*, *tests*

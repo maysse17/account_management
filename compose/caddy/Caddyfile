@@ -1,0 +1,15 @@
+www.account_management.com {
+    redir https://account_management.com
+}
+account_management.com {
+    root /app
+
+    proxy / django:5000 {
+        except /staticfiles /media
+        transparent
+    }
+
+    log stdout
+    errors stdout
+    gzip
+}
