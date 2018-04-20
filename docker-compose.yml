@@ -5,6 +5,7 @@ volumes:
 
 services:
   django:
+    container_name: account-managment-django
     build:
       context: .
       dockerfile: ./compose/django/Dockerfile
@@ -21,20 +22,19 @@ services:
     env_file: .env
 
   postgres:
+    container_name: account-managment-postgresql
     image: postgres:9.6
     volumes:
       - postgres_data:/var/lib/postgresql/data
     env_file: .env
-
-
 
   mailhog:
     image: mailhog/mailhog:v1.0.0
     ports:
       - "8025:8025"
 
-
   vue:
+    container_name: account-managment-vue-js
     build:
       context: .
       dockerfile: ./compose/vue/Dockerfile

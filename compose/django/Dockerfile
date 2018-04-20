@@ -1,4 +1,5 @@
-FROM python:3.6
+FROM aslm-0.2
+
 
 ARG DJANGO_ENV=production
 ENV PYTHONFAULTHANDLER=1 \
@@ -6,17 +7,20 @@ ENV PYTHONFAULTHANDLER=1 \
   PYTHONHASHSEED=random \
   PIP_NO_CACHE_DIR=off \
   PIP_DISABLE_PIP_VERSION_CHECK=on \
-  PIP_DEFAULT_TIMEOUT=100 \
-  PIPENV_SHELL_COMPAT=true \
-  PIPENV_COLORBLIND=true \
-  PIPENV_NOSPIN=true
+  PIP_DEFAULT_TIMEOUT=100
 
-COPY ./Pipfile /Pipfile
-COPY ./Pipfile.lock /Pipfile.lock
-RUN pip install pipenv && pipenv install --dev --system --ignore-pipfile
+COPY ./requirements.txt /requirements.txt
 
-RUN groupadd -r django && \
-  useradd -r -g django django
+RUN apk update \
+      && apk add postgresql-libs \
+      && apk add --no-cache --virtual build_deps python3-dev ca-certificates libffi-dev gcc g++ musl-dev linux-headers tzdata postgresql-dev \
+      && pip install -r requirements.txt \
+      && cp /usr/share/zoneinfo/America/New_York /etc/localtime \
+      && echo "America/New_York" > /etc/timezone \
+      && apk del build_deps
+
+RUN addgroup -S django && \
+  adduser -S -G django django
 
 COPY ./compose/django/gunicorn.sh /gunicorn.sh
 RUN sed -i 's/\r//' /gunicorn.sh && \
@@ -38,6 +42,8 @@ RUN mkdir -p /home/django/ && \
     sed -i 's/\r//' /home/django/.ptpython_history && \
     chmod +x /home/django/.ptpython_history && \
     chown django /home/django/.ptpython_history
+
+RUN apk --purge del build_deps
 
 COPY . /app
 WORKDIR /app
