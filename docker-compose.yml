@@ -11,13 +11,13 @@ services:
       dockerfile: ./compose/django/Dockerfile
       args:
           DJANGO_ENV: development
+          WORKDIR: app
     depends_on:
       - postgres
     volumes:
       - .:/app
     ports:
       - "8000:8000"
-    command: /start.sh
     restart: always
     env_file: .env
 
@@ -26,6 +26,7 @@ services:
     image: postgres:9.6
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - /var/run/postgresql:/var/run/postgresql
     env_file: .env
 
   mailhog:

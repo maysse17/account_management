@@ -8,6 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 '''
 import environ
+import os
 
 ROOT_DIR = environ.Path(__file__) - 3  # (account_management/config/settings/base.py - 3 = account_management/)
 APPS_DIR = ROOT_DIR.path('account_management')
@@ -37,7 +38,7 @@ THIRD_PARTY_APPS = [
 # Apps specific for this project go here.
 LOCAL_APPS = [
     # Your stuff: custom apps go here
-    
+
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -86,7 +87,15 @@ MANAGERS = ADMINS
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///account_management')
+    #'default': env.db('DATABASE_URL', default='postgres:///account_management')
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('POSTGRES_USER', 'postgres'),
+        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', ''),
+        'HOST': 'postgres',
+        'PORT': int(os.environ.get('POSTGRES_PORT', 5432)),
+    }
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 

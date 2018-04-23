@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 set -o errexit
 set -o pipefail
@@ -6,8 +6,19 @@ set -o pipefail
 # todo: turn on after #1295
 # set -o nounset
 
+if [ -n "$DJANGO_ENV" ]; then
+echo $DJANGO_ENV
+fi
 
-cmd="$@"
+if [ "$DJANGO_ENV" == "production" ]
+then
+  echo "Start django with gunicorn server."
+  cmd= /scripts/bash/gunicorn.sh
+elif [ "$DJANGO_ENV" == "development" ]
+then
+  echo "Start django with development server."
+  cmd= /scripts/bash/start.sh
+fi
 
 # This entrypoint is used to play nicely with the current cookiecutter configuration.
 # Since docker-compose relies heavily on environment variables itself for configuration, we'd have to define multiple

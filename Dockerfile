@@ -14,13 +14,3 @@ RUN apk add --no-cache python3 \
   && easy_install pip \
   && pip install --upgrade pip \
   && if [[ ! -e /usr/bin/pip ]]; then ln -sf /usr/bin/pip3 /usr/bin/pip; fi
-
-# User and group
-ARG USER
-ARG GROUP
-ARG WORKDIR
-ENV USER=${USER:-aslm} GROUP=${GROUP:-aslm}
-
-RUN addgroup -S ${GROUP} && adduser -S -g ${USER} ${GROUP}
-
-RUN mkdir -p /${WORKDIR:-app}/logs

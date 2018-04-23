@@ -8,6 +8,7 @@ markdown
 django-filter
 django-environ
 django-extensions
+Werkzeug
 #Pillow
 psycopg2
 django-redis
