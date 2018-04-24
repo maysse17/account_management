@@ -38,6 +38,7 @@ THIRD_PARTY_APPS = [
 # Apps specific for this project go here.
 LOCAL_APPS = [
     # Your stuff: custom apps go here
+    'api.apps.ApiConfig'
 
 ]
 
@@ -86,19 +87,24 @@ MANAGERS = ADMINS
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
+# DATABASES = {
+#     #'default': env.db('DATABASE_URL', default='postgres:///account_management')
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.environ.get('POSTGRES_USER', 'postgres'),
+#         'USER': os.environ.get('POSTGRES_USER', 'postgres'),
+#         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', ''),
+#         'HOST': 'postgres',
+#         'PORT': int(os.environ.get('POSTGRES_PORT', 5432)),
+#     }
+# }
+# DATABASES['default']['ATOMIC_REQUESTS'] = True
 DATABASES = {
-    #'default': env.db('DATABASE_URL', default='postgres:///account_management')
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('POSTGRES_USER', 'postgres'),
-        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', ''),
-        'HOST': 'postgres',
-        'PORT': int(os.environ.get('POSTGRES_PORT', 5432)),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
-DATABASES['default']['ATOMIC_REQUESTS'] = True
-
 
 # GENERAL CONFIGURATION
 # ------------------------------------------------------------------------------
