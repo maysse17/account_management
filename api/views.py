@@ -24,6 +24,3 @@ class SnippetViewSet(viewsets.ModelViewSet):
     """
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
-
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)

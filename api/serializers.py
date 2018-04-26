@@ -4,13 +4,14 @@ from api.models import Account
 from django.contrib.auth.models import User
 
 
-class AccountSerializer(serializers.Serializer):
+class AccountSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Account
+        fields = '__all__'
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ('url', 'id', 'username')
+        fields = ('url', 'id', 'username', 'accounts')
