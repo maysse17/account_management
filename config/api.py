@@ -6,7 +6,9 @@ from api import views
 api = routers.DefaultRouter()
 api.trailing_slash = '/?'
 
-api.register(r'snippets', views.SnippetViewSet)
+api.register(r'accounts', views.AccountViewSet)
 api.register(r'users', views.UserViewSet)
+api.register(r'operations', views.OperationViewSet)
+api.register(r'banks', views.BankViewSet)
 
 
