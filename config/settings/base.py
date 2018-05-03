@@ -87,24 +87,24 @@ MANAGERS = ADMINS
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
-# DATABASES = {
-#     #'default': env.db('DATABASE_URL', default='postgres:///account_management')
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': os.environ.get('POSTGRES_USER', 'postgres'),
-#         'USER': os.environ.get('POSTGRES_USER', 'postgres'),
-#         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', ''),
-#         'HOST': 'postgres',
-#         'PORT': int(os.environ.get('POSTGRES_PORT', 5432)),
-#     }
-# }
-# DATABASES['default']['ATOMIC_REQUESTS'] = True
 DATABASES = {
+    #'default': env.db('DATABASE_URL', default='postgres:///account_management')
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('POSTGRES_USER', 'postgres'),
+        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', ''),
+        'HOST': 'postgres',
+        'PORT': int(os.environ.get('POSTGRES_PORT', 5432)),
     }
 }
+DATABASES['default']['ATOMIC_REQUESTS'] = True
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'mydatabase',
+#     }
+# }
 
 # GENERAL CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -215,16 +215,26 @@ AUTH_PASSWORD_VALIDATORS = [
 # ------------------------------------------------------------------------------
 REST_FRAMEWORK = {
     'UPLOADED_FILES_USE_URL': False,
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer'
+    ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication'
     ],
-    'DEFAULT_PERMISSION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ],
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.JSONParser',
         'rest_framework.parsers.FormParser',
         'rest_framework.parsers.MultiPartParser',
         'rest_framework.parsers.FileUploadParser'
+    ],
+    'PAGE_SIZE': 100,
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
     ]
 }
 

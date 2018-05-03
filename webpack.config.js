@@ -1,4 +1,12 @@
 var webpack = require('webpack')
+const { VueLoaderPlugin } = require('vue-loader')
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+const extractSass = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    disable: process.env.NODE_ENV === "development"
+});
+
 
 // ==================== MAIN SETTINGS ====================
 module.exports = {
@@ -9,12 +17,26 @@ module.exports = {
                 test: /\.vue$/,
                 loader: 'vue-loader',
                 options: {
-                    loaders: {
-                        'scss': 'vue-style-loader!css-loader!sass-loader',
-                        'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-                    },
                     transformToRequire: {video: 'src', source: 'src', img: 'src', image: 'xlink:href'}
                 }
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: "style-loader" // creates style nodes from JS strings
+                    },
+                    {
+                        loader: "css-loader" // translates CSS into CommonJS
+                    },
+                    {
+                        loader: "sass-loader" // compiles Sass to CSS
+                    }
+                ]
+            },
+            {
+                test: /\.css$/,
+                loader: 'style-loader!css-loader'
             },
             {
                 test: /\.js$/,
@@ -38,7 +60,9 @@ module.exports = {
             }
         ]
     },
-    plugins: [],
+    plugins: [
+        new VueLoaderPlugin()
+    ],
     resolve: {
         alias: {'vue$': 'vue/dist/vue.esm.js'}
     }
