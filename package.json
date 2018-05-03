@@ -5,7 +5,7 @@
   "author": "adil.mouhssine@gmail.com",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --mode production",
     "lint": "eslint --ext .js,.vue account_management/static"
   },
