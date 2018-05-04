@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import FirstComponent from './components/FirstComponent.vue'
+import Home from './components/Home.vue'
 
 const routes = [
-  {path: '*', component: FirstComponent}
+  {path: '*', component: Home}
 ]
 
 Vue.use(VueRouter)

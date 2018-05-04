@@ -25,21 +25,31 @@
     <meta name="apple-mobile-web-app-title" content="Account Management">
     <meta name="application-name" content="Account Management">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
-  <body style="margin: 0">
-    <div id="main"></div>
+  <body class="fixed-sn light-blue-skin">
+    <div id="main">
+
+    </div>
   </body>
 
   {% if GOOGLE_ANALYTICS %}<script>var GOOGLE_ANALYTICS = "{{ GOOGLE_ANALYTICS }}"</script>{% endif %}
-  
-  
 
-  
+
+
+
       {% if DEBUG %}
           <script type="text/javascript" src="http://localhost:3000/staticfiles/dist/bundle.js"></script>
       {% else %}
           <script type="text/javascript" src="{% static 'dist/bundle.js' %}"></script>
       {% endif %}
-  
+<script>
+  // SideNav Button Initialization
+$(".button-collapse").sideNav();
+// SideNav Scrollbar Initialization
+var sideNavScrollbar = document.querySelector('.custom-scrollbar');
+Ps.initialize(sideNavScrollbar);
+</script>
+
 </html>

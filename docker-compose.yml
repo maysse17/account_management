@@ -34,15 +34,3 @@ services:
     ports:
       - "8025:8025"
 
-  vue:
-    container_name: account-managment-vue-js
-    build:
-      context: .
-      dockerfile: ./compose/vue/Dockerfile
-    command: npm run dev
-    volumes:
-      - .:/app
-      - /app/node_modules
-    ports:
-      - "3000:3000"
-    env_file: .env

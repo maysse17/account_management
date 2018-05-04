@@ -22,6 +22,9 @@ Vue.use(BootstrapVue)
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'mdbvue/build/css/mdb.css'
+import 'mdbvue/src/components/Waves.css'
+import 'mdbootstrap/css/style.css'
 
 
 /* eslint-disable no-new */

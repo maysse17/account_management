@@ -58,6 +58,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new VueLoaderPlugin()
     ],
     resolve: {
         alias: {'vue$': 'vue/dist/vue.esm.js'}
@@ -76,7 +77,8 @@ if (process.env.NODE_ENV === 'production') {
         new webpack.DefinePlugin({'process.env': {NODE_ENV: '"production"'}}),
         new webpack.LoaderOptionsPlugin({minimize: true}),
         new webpack.optimize.UglifyJsPlugin({sourceMap: true, compress: {warnings: false}})
-    )
+    ),
+    module.exports.mode = 'production'
 }
 
 // ==================== DEVELOPMENT SETTINGS ====================
@@ -96,15 +98,18 @@ if (process.env.NODE_ENV === 'development') {
     module.exports.devServer = {
         historyApiFallback: true,
         noInfo: true,
+        inline: true,
         host: '0.0.0.0',
         port: 3000,
         hot: true,
+        clientLogLevel: "info",
         filename: 'bundle.js',
         headers: {
-            'Access-Control-Allow-Origin': 'http://localhost:8000',
+            'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Headers': 'X-Requested-With'
         }
     },
     module.exports.performance = {hints: false},
-    module.exports.watchOptions = {poll: 1000}
+    module.exports.watchOptions = {poll: 1000},
+    module.exports.mode = 'development'
 }
