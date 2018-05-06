@@ -10,6 +10,10 @@
     "lint": "eslint --ext .js,.vue account_management/static"
   },
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.7",
+    "@fortawesome/fontawesome-free-brands": "^5.0.12",
+    "@fortawesome/fontawesome-free-regular": "^5.0.12",
+    "@fortawesome/fontawesome-free-solid": "^5.0.12",
     "axios": "^0.18.0",
     "babel-core": "^6.25.0",
     "babel-eslint": "^8.2.1",

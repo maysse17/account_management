@@ -25,7 +25,8 @@
     <meta name="apple-mobile-web-app-title" content="Account Management">
     <meta name="application-name" content="Account Management">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.5/css/mdb.min.css" />
   </head>
 
   <body class="fixed-sn light-blue-skin">
@@ -44,12 +45,10 @@
       {% else %}
           <script type="text/javascript" src="{% static 'dist/bundle.js' %}"></script>
       {% endif %}
-<script>
-  // SideNav Button Initialization
-$(".button-collapse").sideNav();
-// SideNav Scrollbar Initialization
-var sideNavScrollbar = document.querySelector('.custom-scrollbar');
-Ps.initialize(sideNavScrollbar);
-</script>
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.5/js/mdb.min.js"></script>
 
 </html>
