@@ -11,8 +11,8 @@ module.exports = {
                 loader: 'vue-loader',
                 options: {
                     loaders: {
-                        'scss': 'style-loader!css-loader!sass-loader',
-                        'sass': 'style-loader!css-loader!sass-loader?indentedSyntax'
+                        'scss': 'vue-style-loader!css-loader!sass-loader',
+                        'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
                     },
                     transformToRequire: {video: 'src', source: 'src', img: 'src', image: 'xlink:href'}
                 }
@@ -54,14 +54,30 @@ module.exports = {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {limit: 10000, name: '[name].[hash:7].[ext]'}
-            }
+            },
+            {
+                test: /vendor\/.+\.(jsx|js)$/,
+                loader: 'imports?jQuery=jquery,$=jquery,this=>window'
+            },
+            {
+                test: /\.(html)$/,
+                use: {
+                    loader: 'html-loader',
+                    options: {
+                        attrs: [':data-src']
+                    }
+                }
+            },
         ]
     },
     plugins: [
         new VueLoaderPlugin()
     ],
     resolve: {
-        alias: {'vue$': 'vue/dist/vue.esm.js'}
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js',
+            'jquery': 'jquery/src/jquery.js'
+        }
     }
 }
 
@@ -76,7 +92,19 @@ if (process.env.NODE_ENV === 'production') {
     module.exports.plugins.push(
         new webpack.DefinePlugin({'process.env': {NODE_ENV: '"production"'}}),
         new webpack.LoaderOptionsPlugin({minimize: true}),
-        new webpack.optimize.UglifyJsPlugin({sourceMap: true, compress: {warnings: false}})
+        new webpack.optimize.UglifyJsPlugin({sourceMap: true, compress: {warnings: false}}),
+        new webpack.ProvidePlugin({
+            Alert: "exports?Alert!bootstrap/js/dist/alert",
+            Button: "exports?Button!bootstrap/js/dist/button",
+            Collapse: "exports?Collapse!bootstrap/js/dist/collapse",
+            Dropdown: "exports?Dropdown!bootstrap/js/dist/dropdown",
+            Modal: "exports?Modal!bootstrap/js/dist/modal",
+            Popover: "exports?Popover!bootstrap/js/dist/popover",
+            Scrollspy: "exports?Scrollspy!bootstrap/js/dist/scrollspy",
+            Tab: "exports?Tab!bootstrap/js/dist/tab",
+            Tooltip: "exports?Tooltip!bootstrap/js/dist/tooltip",
+            Util: "exports?Util!bootstrap/js/dist/util",
+        })
     ),
     module.exports.mode = 'production'
 }
