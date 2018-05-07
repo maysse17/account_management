@@ -58,16 +58,7 @@ module.exports = {
             {
                 test: /vendor\/.+\.(jsx|js)$/,
                 loader: 'imports?jQuery=jquery,$=jquery,this=>window'
-            },
-            {
-                test: /\.(html)$/,
-                use: {
-                    loader: 'html-loader',
-                    options: {
-                        attrs: [':data-src']
-                    }
-                }
-            },
+            }
         ]
     },
     plugins: [

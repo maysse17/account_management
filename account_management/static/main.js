@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import BootstrapVue from 'bootstrap-vue'
 
 import axios from 'axios'
 import router from './router'
@@ -8,6 +7,8 @@ import Meta from 'vue-meta'
 import VueAnalytics from 'vue-analytics'
 
 import Main from './Main.vue'
+import { index } from './components/index';
+
 
 // Axios csrf settings
 axios.defaults.xsrfCookieName = 'csrftoken'
@@ -18,13 +19,6 @@ axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 Vue.use(VueAnalytics, {id: GOOGLE_ANALYTICS, router})
 
 Vue.use(Meta)
-Vue.use(BootstrapVue)
-
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-import 'mdbvue/build/css/mdb.css'
-import 'mdbvue/src/components/Waves.css'
-import 'mdbootstrap/css/style.css'
 
 
 /* eslint-disable no-new */
@@ -32,5 +26,7 @@ new Vue({
   el: '#main',
   router,
   store,
-  render: h => h(Main)
+  render: h => h(Main),
+  components: { Main }
 })
+
