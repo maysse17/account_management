@@ -11,7 +11,7 @@ const Dashboard = resolve => { require.ensure(['./layouts/Dashboard.vue'], ()=>{
 // UI Components
 const Buttons = resolve => { require.ensure(['./components/Buttons.vue'], ()=>{ resolve(require('./components/Buttons.vue')); }); };
 const Badges = resolve => { require.ensure(['./components/Badges.vue'], ()=>{ resolve(require('./components/Badges.vue')); }); };
-const Cards = resolve => { require.ensure(['./components/Cards.vue'], ()=>{ resolvAdvancedFormse(require('./components/Cards.vue')); }); };
+const Cards = resolve => { require.ensure(['./components/Cards.vue'], ()=>{ resolve(require('./components/Cards.vue')); }); };
 const Alerts = resolve => { require.ensure(['./components/Alerts.vue'], ()=>{ resolve(require('./components/Alerts.vue')); }); };
 
 const BasicForms = resolve => { require.ensure(['./components/forms/BasicForms.vue'], ()=>{ resolve(require('./components/forms/BasicForms.vue')); }); };

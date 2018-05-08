@@ -39,7 +39,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/vue/Dockerfile
-    command: npm run dev
+    command: yarn run dev
     volumes:
       - .:/app
       - /app/node_modules
