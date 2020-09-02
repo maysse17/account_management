@@ -26,7 +26,7 @@
     "bootstrap": "^4.1.1",
     "bootstrap-loader": "^2.2.0",
     "bootstrap-sass": "^3.3.7",
-    "bootstrap-vue": "^2.0.0-rc.9",
+    "bootstrap-vue": "^2.0.0-rc.12",
     "callback-loader": "^0.2.4",
     "chart.js": "^2.7.2",
     "cross-env": "^5.0.1",
