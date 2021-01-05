@@ -16,7 +16,7 @@
     "amcharts3": "^3.21.2",
     "ammap3": "^3.21.6",
     "animate.css": "^3.5.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-core": "^6.25.0",
     "babel-eslint": "^8.2.1",
     "babel-loader": "^7.0.0",
