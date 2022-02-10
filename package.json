@@ -60,7 +60,7 @@
     "mdbootstrap": "^4.5.1",
     "mdbvue": "^4.1.0",
     "node-css": "^0.1.0",
-    "node-sass": "^4.5.3",
+    "node-sass": "^7.0.0",
     "normalize.css": "^7.0.0",
     "postcss-loader": "^2.0.6",
     "resolve-url-loader": "^2.3.0",
